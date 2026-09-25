@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #0a0e17;
+
+  --card: #ffffff;
+  --card-foreground: #0a0e17;
+
+  --surface: #f6f7f9;
+  --border: #e5e7eb;
+  --muted: #6b7280;
+
+  --primary: #2f5fed;
+  --primary-hover: #2650cc;
+  --primary-foreground: #ffffff;
+
+  --success: #16a34a;
+  --warning: #d97706;
+  --danger: #dc2626;
+
+  --radius: 0.625rem;
+
+  --shadow-sm: 0 1px 2px 0 rgb(10 14 23 / 0.05);
+  --shadow-md: 0 4px 12px -2px rgb(10 14 23 / 0.08), 0 2px 4px -2px rgb(10 14 23 / 0.04);
+  --shadow-lg: 0 12px 32px -8px rgb(10 14 23 / 0.12), 0 4px 8px -4px rgb(10 14 23 / 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0d14;
+    --foreground: #f1f5f9;
+
+    --card: #10141d;
+    --card-foreground: #f1f5f9;
+
+    --surface: #10141d;
+    --border: #232a36;
+    --muted: #8b93a3;
+
+    --primary: #5b84ff;
+    --primary-hover: #7398ff;
+    --primary-foreground: #0a0d14;
+
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow-md: 0 4px 12px -2px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.2);
+    --shadow-lg: 0 12px 32px -8px rgb(0 0 0 / 0.5), 0 4px 8px -4px rgb(0 0 0 / 0.3);
+  }
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+
+  --radius-sm: calc(var(--radius) - 0.25rem);
+  --radius-md: calc(var(--radius) - 0.125rem);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 0.25rem);
+
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

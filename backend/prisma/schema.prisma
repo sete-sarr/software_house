@@ -1,0 +1,200 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  ADMIN
+  EDITOR
+}
+
+enum ContentStatus {
+  DRAFT
+  PUBLISHED
+}
+
+enum JobType {
+  CDI
+  CDD
+  FREELANCE
+  STAGE
+}
+
+enum ApplicationStatus {
+  NEW
+  REVIEWED
+  REJECTED
+  ACCEPTED
+}
+
+enum ContactStatus {
+  NEW
+  CONTACTED
+  CLOSED
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  firstName    String
+  lastName     String
+  role         Role     @default(EDITOR)
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Service {
+  id               String        @id @default(cuid())
+  slug             String        @unique
+  title            String
+  shortDescription String
+  problem          String
+  solution         String
+  benefits         String[]
+  features         String[]
+  technologies     String[]
+  icon             String?
+  order            Int           @default(0)
+  status           ContentStatus @default(DRAFT)
+  seoTitle         String?
+  seoDescription   String?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  @@map("services")
+}
+
+model Technology {
+  id       String    @id @default(cuid())
+  name     String
+  slug     String    @unique
+  icon     String?
+  category String?
+  projects Project[]
+
+  @@map("technologies")
+}
+
+model Project {
+  id               String        @id @default(cuid())
+  slug             String        @unique
+  title            String
+  category         String
+  shortDescription String
+  problem          String?
+  solution         String?
+  result           String?
+  coverImage       String?
+  gallery          Json?
+  status           ContentStatus @default(DRAFT)
+  order            Int           @default(0)
+  seoTitle         String?
+  seoDescription   String?
+  technologies     Technology[]
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  @@map("projects")
+}
+
+model TeamMember {
+  id        String   @id @default(cuid())
+  firstName String
+  lastName  String
+  role      String
+  bio       String?
+  photo     String?
+  linkedin  String?
+  github    String?
+  order     Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("team_members")
+}
+
+model JobOffer {
+  id           String        @id @default(cuid())
+  slug         String        @unique
+  title        String
+  department   String?
+  location     String?
+  type         JobType
+  description  String
+  requirements String?
+  status       ContentStatus @default(DRAFT)
+  publishedAt  DateTime?
+  applications Application[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  @@map("job_offers")
+}
+
+model Application {
+  id              String            @id @default(cuid())
+  jobOffer        JobOffer?         @relation(fields: [jobOfferId], references: [id], onDelete: SetNull)
+  jobOfferId      String?
+  firstName       String
+  lastName        String
+  email           String
+  phone           String?
+  cvUrl           String
+  coverLetterUrl  String?
+  portfolioUrl    String?
+  linkedin        String?
+  github          String?
+  message         String?
+  status          ApplicationStatus @default(NEW)
+  createdAt       DateTime          @default(now())
+
+  @@map("applications")
+}
+
+model ContactRequest {
+  id          String        @id @default(cuid())
+  firstName   String
+  lastName    String
+  company     String?
+  email       String
+  phone       String?
+  projectType String?
+  budget      String?
+  timeline    String?
+  message     String
+  consent     Boolean       @default(false)
+  status      ContactStatus @default(NEW)
+  createdAt   DateTime      @default(now())
+
+  @@map("contact_requests")
+}
+
+model Testimonial {
+  id          String   @id @default(cuid())
+  authorName  String
+  authorRole  String?
+  company     String?
+  content     String
+  avatar      String?
+  isPublished Boolean  @default(false)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+
+  @@map("testimonials")
+}
+
+model SiteSetting {
+  id    String @id @default(cuid())
+  key   String @unique
+  value String
+
+  @@map("site_settings")
+}

@@ -1,0 +1,10 @@
+# Docker
+docker/.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local secrets & scratch files
+.env
+scratchpad/
