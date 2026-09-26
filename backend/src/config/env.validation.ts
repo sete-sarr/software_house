@@ -3,7 +3,7 @@ import {
   IsInt,
   IsNotEmpty,
   IsOptional,
-  IsUrl,
+  Matches,
   Max,
   Min,
   validateSync,
@@ -29,8 +29,12 @@ class EnvironmentVariables {
   @IsNotEmpty()
   JWT_REFRESH_SECRET: string;
 
+  // One or more origins separated by commas, e.g. "https://example.com,https://www.example.com".
   @IsOptional()
-  @IsUrl({ require_tld: false })
+  @Matches(/^\s*https?:\/\/[^\s,/]+\/?\s*(,\s*https?:\/\/[^\s,/]+\/?\s*)*$/, {
+    message:
+      'CORS_ORIGIN doit contenir une ou plusieurs origines séparées par des virgules, chacune commençant par http:// ou https:// (ex. https://example.com).',
+  })
   CORS_ORIGIN?: string;
 }
 

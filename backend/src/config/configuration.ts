@@ -1,3 +1,11 @@
+/** "https://a.com/, https://b.com" → ["https://a.com", "https://b.com"] (browsers send origins without a trailing slash). */
+function parseOrigins(value: string): string[] {
+  return value
+    .split(',')
+    .map((origin) => origin.trim().replace(/\/+$/, ''))
+    .filter(Boolean);
+}
+
 export default () => ({
   nodeEnv: process.env.NODE_ENV ?? 'development',
   port: parseInt(process.env.PORT ?? '3001', 10),
@@ -16,7 +24,7 @@ export default () => ({
   },
 
   cors: {
-    origin: process.env.CORS_ORIGIN ?? 'http://localhost:3000',
+    origins: parseOrigins(process.env.CORS_ORIGIN ?? 'http://localhost:3000'),
   },
 
   throttle: {

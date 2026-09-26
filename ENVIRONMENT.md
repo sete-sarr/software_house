@@ -18,7 +18,7 @@ Chaque projet a son propre `.env.example` à copier (`backend/.env.example` → 
 | `JWT_EXPIRES_IN` | non | `15m` | Durée de vie de l'access token. |
 | `JWT_REFRESH_SECRET` | oui | — | Secret de signature des refresh tokens. **Différent** de `JWT_SECRET`. |
 | `JWT_REFRESH_EXPIRES_IN` | non | `7d` | Durée de vie du refresh token. |
-| `CORS_ORIGIN` | non | `http://localhost:3000` | Origine autorisée à appeler l'API. |
+| `CORS_ORIGIN` | non | `http://localhost:3000` | Origine(s) autorisée(s) à appeler l'API, séparées par des virgules (ex. `https://paradigital.tech,https://software-house-web-7iah.onrender.com`). Espaces et `/` final ignorés ; chaque origine doit commencer par `http://` ou `https://`. |
 | `THROTTLE_TTL` | non | `60000` | Fenêtre de rate limiting global (ms). |
 | `THROTTLE_LIMIT` | non | `100` | Requêtes max par fenêtre et par IP. |
 | `SMTP_HOST` | non | — | Si absent, les emails sont journalisés au lieu d'être envoyés (aucune erreur). |
