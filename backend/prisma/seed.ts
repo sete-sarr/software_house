@@ -324,7 +324,7 @@ async function seedAdminUser() {
       email,
       passwordHash,
       firstName: 'Admin',
-      lastName: 'Software House',
+      lastName: 'Paradigital',
       role: 'ADMIN',
     },
   });

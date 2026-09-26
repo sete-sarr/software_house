@@ -9,7 +9,7 @@ import { ApplicationForm } from "@/components/forms/application-form";
 export const metadata: Metadata = buildMetadata({
   title: "Carrières",
   description:
-    "Rejoignez Software House : autonomie, exigence technique et projets variés. Découvrez nos offres et envoyez-nous une candidature spontanée.",
+    "Rejoignez Paradigital : autonomie, exigence technique et projets variés. Découvrez nos offres et envoyez-nous une candidature spontanée.",
   path: "/carrieres",
 });
 
@@ -50,7 +50,7 @@ export default function CarrieresPage() {
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-muted">
               Nous cherchons des personnes qui aiment le travail bien fait autant que nous.
-              Découvrez pourquoi travailler chez Software House.
+              Découvrez pourquoi travailler chez Paradigital.
             </p>
           </div>
         </Container>

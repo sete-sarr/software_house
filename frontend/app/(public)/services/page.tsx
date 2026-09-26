@@ -9,7 +9,7 @@ import { getServices } from "@/lib/api/services";
 export const metadata: Metadata = buildMetadata({
   title: "Services",
   description:
-    "Développement web, mobile, SaaS, intelligence artificielle, automatisation et plus : découvrez les services de l'agence Software House.",
+    "Développement web, mobile, SaaS, intelligence artificielle, automatisation et plus : découvrez les services de l'agence Paradigital.",
   path: "/services",
 });
 

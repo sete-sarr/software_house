@@ -12,7 +12,7 @@ import { CtaSection } from "@/components/sections/cta-section";
 export const metadata: Metadata = buildMetadata({
   title: "À propos",
   description:
-    "Découvrez la mission, la méthode et les valeurs de Software House, agence de développement web, mobile et logiciel.",
+    "Découvrez la mission, la méthode et les valeurs de Paradigital, agence de développement web, mobile et logiciel.",
   path: "/a-propos",
 });
 
@@ -29,7 +29,7 @@ export default function AProposPage() {
               Une agence construite autour d&apos;une conviction simple.
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-muted">
-              Un bon logiciel se construit avec méthode, pas dans l&apos;urgence. Software House
+              Un bon logiciel se construit avec méthode, pas dans l&apos;urgence. Paradigital
               accompagne des entreprises qui veulent transformer une idée ou un besoin métier en
               un produit numérique fiable, maintenable et pensé pour durer.
             </p>
@@ -45,7 +45,7 @@ export default function AProposPage() {
                 Notre histoire
               </h2>
               <p className="text-sm leading-relaxed text-foreground">
-                Software House est née d&apos;un constat partagé par beaucoup d&apos;entreprises : trop
+                Paradigital est née d&apos;un constat partagé par beaucoup d&apos;entreprises : trop
                 de projets logiciels échouent non pas par manque de compétences techniques, mais
                 par manque de méthode et d&apos;alignement entre les équipes techniques et le
                 métier. Nous avons voulu construire une agence qui met la rigueur d&apos;ingénierie

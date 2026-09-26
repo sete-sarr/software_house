@@ -6,7 +6,7 @@ import { ContactForm } from "@/components/forms/contact-form";
 import {
   CONTACT_ADDRESS,
   CONTACT_EMAIL,
-  CONTACT_PHONE,
+  CONTACT_PHONES,
   RESPONSE_TIME,
   SOCIAL_LINKS,
 } from "@/lib/data/contact-info";
@@ -14,7 +14,7 @@ import {
 export const metadata: Metadata = buildMetadata({
   title: "Contact",
   description:
-    "Parlons de votre projet. Contactez Software House pour un premier échange sans engagement.",
+    "Parlons de votre projet. Contactez Paradigital pour un premier échange sans engagement.",
   path: "/contact",
 });
 
@@ -47,12 +47,20 @@ export default function ContactPage() {
               </h2>
               <ul className="mt-4 flex flex-col gap-3 text-sm text-foreground">
                 <li className="flex items-start gap-2">
-                  <Mail className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                  <span>{CONTACT_EMAIL}</span>
+                  <Mail className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+                  <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-primary">
+                    {CONTACT_EMAIL}
+                  </a>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Phone className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                  <span>{CONTACT_PHONE}</span>
+                  <Phone className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+                  <span className="flex flex-col gap-1">
+                    {CONTACT_PHONES.map((phone) => (
+                      <a key={phone.href} href={phone.href} className="hover:text-primary">
+                        {phone.label}
+                      </a>
+                    ))}
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
                   <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />

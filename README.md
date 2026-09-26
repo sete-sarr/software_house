@@ -1,4 +1,4 @@
-# Software House — Plateforme institutionnelle
+# Paradigital — Plateforme institutionnelle
 
 Monorepo (deux projets indépendants, chacun avec son propre dépôt git) pour le site et l'API d'une
 agence technologique : développement web, mobile, SaaS, IA, automatisation.

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, MapPin } from "lucide-react";
-import { buildMetadata, SITE_URL } from "@/lib/seo";
+import { buildMetadata, SITE_NAME, SITE_URL } from "@/lib/seo";
 import { Container } from "@/components/ui/container";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -57,7 +57,7 @@ export default async function JobOfferDetailPage({
     employmentType: EMPLOYMENT_TYPE[job.type],
     hiringOrganization: {
       "@type": "Organization",
-      name: "Software House",
+      name: SITE_NAME,
       sameAs: SITE_URL,
     },
     ...(job.location

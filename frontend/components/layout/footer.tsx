@@ -2,7 +2,14 @@ import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { featuredServiceLinks } from "@/lib/data/service-links";
-import { CONTACT_ADDRESS, CONTACT_EMAIL, CONTACT_PHONE, SOCIAL_LINKS } from "@/lib/data/contact-info";
+import { BrandLogo } from "@/components/layout/brand-logo";
+import {
+  CONTACT_ADDRESS,
+  CONTACT_EMAIL,
+  CONTACT_PHONES,
+  SOCIAL_LINKS,
+} from "@/lib/data/contact-info";
+import { SITE_NAME, SITE_TAGLINE } from "@/lib/seo";
 
 const NAVIGATION_LINKS = [
   { href: "/", label: "Accueil" },
@@ -26,9 +33,10 @@ export function Footer() {
       <Container>
         <div className="grid grid-cols-1 gap-10 py-16 sm:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">
-            <Link href="/" className="text-lg font-semibold tracking-tight">
-              Software<span className="text-primary">House</span>
-            </Link>
+            <BrandLogo />
+            <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted">
+              {SITE_TAGLINE}
+            </p>
             <p className="max-w-xs text-sm text-muted">
               Agence technologique spécialisée dans la conception et le développement de
               plateformes web, mobiles et logicielles pour entreprises et startups.
@@ -77,12 +85,20 @@ export function Footer() {
             <h3 className="text-sm font-semibold text-foreground">Coordonnées</h3>
             <ul className="mt-4 space-y-3 text-sm text-muted">
               <li className="flex items-start gap-2">
-                <Mail className="mt-0.5 h-4 w-4 shrink-0" />
-                <span>{CONTACT_EMAIL}</span>
+                <Mail className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+                <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-foreground">
+                  {CONTACT_EMAIL}
+                </a>
               </li>
               <li className="flex items-start gap-2">
-                <Phone className="mt-0.5 h-4 w-4 shrink-0" />
-                <span>{CONTACT_PHONE}</span>
+                <Phone className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+                <span className="flex flex-col gap-1">
+                  {CONTACT_PHONES.map((phone) => (
+                    <a key={phone.href} href={phone.href} className="hover:text-foreground">
+                      {phone.label}
+                    </a>
+                  ))}
+                </span>
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
@@ -93,7 +109,9 @@ export function Footer() {
         </div>
 
         <div className="flex flex-col items-center justify-between gap-4 border-t border-border py-6 sm:flex-row">
-          <p className="text-xs text-muted">© {year} Software House. Tous droits réservés.</p>
+          <p className="text-xs text-muted">
+            © {year} {SITE_NAME}. Tous droits réservés.
+          </p>
           <div className="flex gap-6">
             <Link href="/mentions-legales" className="text-xs text-muted hover:text-foreground">
               Mentions légales

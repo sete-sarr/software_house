@@ -24,7 +24,7 @@ export function Hero() {
           </RevealItem>
 
           <RevealItem as="p" className="max-w-2xl text-lg leading-relaxed text-muted">
-            Software House conçoit, développe et fait évoluer des applications
+            Paradigital conçoit, développe et fait évoluer des applications
             web, mobiles et plateformes SaaS pour des entreprises qui veulent
             transformer une idée en produit fiable — de la première ligne de
             code à la mise à l&apos;échelle.

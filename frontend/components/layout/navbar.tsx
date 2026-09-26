@@ -7,6 +7,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
+import { BrandLogo } from "@/components/layout/brand-logo";
 import { cn } from "@/lib/utils";
 
 const FOCUSABLE_SELECTOR =
@@ -78,9 +79,7 @@ export function Navbar() {
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
       <Container>
         <nav className="flex h-16 items-center justify-between" aria-label="Navigation principale">
-          <Link href="/" className="text-lg font-semibold tracking-tight">
-            Software<span className="text-primary">House</span>
-          </Link>
+          <BrandLogo eager />
 
           <ul className="hidden items-center gap-8 md:flex">
             {NAV_LINKS.map((link) => {

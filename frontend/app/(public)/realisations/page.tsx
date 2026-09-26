@@ -8,7 +8,7 @@ import { CtaSection } from "@/components/sections/cta-section";
 export const metadata: Metadata = buildMetadata({
   title: "Réalisations",
   description:
-    "Le portfolio de projets de Software House est en cours de constitution. Retrouvez ici prochainement nos études de cas, technologies et résultats.",
+    "Le portfolio de projets de Paradigital est en cours de constitution. Retrouvez ici prochainement nos études de cas, technologies et résultats.",
   path: "/realisations",
 });
 

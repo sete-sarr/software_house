@@ -11,8 +11,9 @@
   --border: #e5e7eb;
   --muted: #6b7280;
 
-  --primary: #2f5fed;
-  --primary-hover: #2650cc;
+  /* Paradigital brand blue (logo #006efb), darkened slightly for WCAG AA: 5.5:1 on white. */
+  --primary: #0062e0;
+  --primary-hover: #0052bd;
   --primary-foreground: #ffffff;
 
   --success: #16a34a;
@@ -38,8 +39,9 @@
     --border: #232a36;
     --muted: #8b93a3;
 
-    --primary: #5b84ff;
-    --primary-hover: #7398ff;
+    /* Brand blue lightened for dark backgrounds: 6.4:1 on --background. */
+    --primary: #2e95ff;
+    --primary-hover: #54a9ff;
     --primary-foreground: #0a0d14;
 
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);

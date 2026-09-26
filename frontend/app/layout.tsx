@@ -1,6 +1,15 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { CONTACT_EMAIL, CONTACT_PHONES } from "@/lib/data/contact-info";
+import {
+  SHARE_IMAGE,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_TAGLINE,
+  SITE_TITLE,
+  SITE_URL,
+} from "@/lib/seo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,43 +21,50 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Software House — Agence de développement web, mobile & logiciel",
-    template: "%s | Software House",
+    default: SITE_TITLE,
+    template: `%s | ${SITE_NAME}`,
   },
-  description:
-    "Software House conçoit et développe des applications web, mobiles, plateformes SaaS et solutions d'intelligence artificielle pour les entreprises qui veulent accélérer leur transformation numérique.",
+  description: SITE_DESCRIPTION,
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    siteName: "Software House",
-    url: siteUrl,
-    title: "Software House — Agence de développement web, mobile & logiciel",
+    siteName: SITE_NAME,
+    url: SITE_URL,
+    title: SITE_TITLE,
     description:
       "Conception et développement de plateformes web, mobiles et logicielles sur mesure.",
+    images: [SHARE_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Software House — Agence de développement web, mobile & logiciel",
+    title: SITE_TITLE,
     description:
       "Conception et développement de plateformes web, mobiles et logicielles sur mesure.",
+    images: [SHARE_IMAGE],
   },
 };
 
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "Software House",
-  url: siteUrl,
-  description:
-    "Software House conçoit et développe des applications web, mobiles, plateformes SaaS et solutions d'intelligence artificielle pour les entreprises qui veulent accélérer leur transformation numérique.",
+  name: SITE_NAME,
+  slogan: SITE_TAGLINE,
+  url: SITE_URL,
+  logo: `${SITE_URL}/brand/paradigital-logo.jpg`,
+  description: SITE_DESCRIPTION,
+  email: CONTACT_EMAIL,
+  contactPoint: CONTACT_PHONES.map((phone) => ({
+    "@type": "ContactPoint",
+    telephone: phone.href.replace("tel:", ""),
+    contactType: "customer service",
+    availableLanguage: ["French"],
+  })),
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, SITE_DESCRIPTION, SITE_TITLE } from "@/lib/seo";
 import { Hero } from "@/components/sections/hero";
 import { Expertise } from "@/components/sections/expertise";
 import { ServicesOverview } from "@/components/sections/services-overview";
@@ -10,12 +10,11 @@ import { Stats } from "@/components/sections/stats";
 import { Testimonials } from "@/components/sections/testimonials";
 import { CtaSection } from "@/components/sections/cta-section";
 
-export const metadata: Metadata = buildMetadata({
-  title: "Software House — Agence de développement web, mobile & logiciel",
-  description:
-    "Software House conçoit et développe des applications web, mobiles, plateformes SaaS et solutions d'intelligence artificielle pour les entreprises qui veulent accélérer leur transformation numérique.",
-  path: "/",
-});
+export const metadata: Metadata = {
+  ...buildMetadata({ title: SITE_TITLE, description: SITE_DESCRIPTION, path: "/" }),
+  // The home title already contains the brand: bypass the "%s | Paradigital" template.
+  title: { absolute: SITE_TITLE },
+};
 
 export default function Home() {
   return (
