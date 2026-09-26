@@ -87,6 +87,26 @@ npm run start   # ou servir .next/standalone si Docker/plateforme le préfère
 avant le build (elles sont injectées au build, pas seulement au runtime, car exposées au
 navigateur).
 
+## Option C — Render (Blueprint)
+
+Le fichier [`render.yaml`](render.yaml) décrit les deux services (runtime Node natif, plan free, région Frankfurt) :
+
+| Service | Dossier | Build | Démarrage |
+|---|---|---|---|
+| `software-house-api` | `backend/` | `npm ci --include=dev && npx prisma generate && npm run build` | `npx prisma migrate deploy && node dist/main` |
+| `software-house-web` | `frontend/` | `npm ci --include=dev && npm run build` + copie des assets standalone | `node .next/standalone/server.js` |
+
+1. Pousser le dépôt sur GitHub, puis dans Render : **New → Blueprint** → choisir le dépôt.
+2. Renseigner les variables `sync: false` demandées (voir [ENVIRONMENT.md](ENVIRONMENT.md)). Les secrets JWT sont générés par Render.
+3. `NEXT_PUBLIC_API_URL` est **figée au build** : après toute modification, relancer un déploiement du frontend.
+4. Le build du frontend pré-rend des pages en appelant l'API : l'API doit être en ligne. Si le premier build du frontend échoue parce que l'API n'était pas encore prête, relancer *Manual Deploy* une fois l'API en ligne.
+
+Limites du plan free :
+
+- les services s'endorment après 15 min d'inactivité (premier chargement ≈ 1 min) ;
+- pas de commande pre-deploy : les migrations tournent au démarrage (`migrate deploy` est idempotent) ;
+- **disque éphémère** : les fichiers uploadés (CV, lettres de motivation) sont perdus à chaque redéploiement ou redémarrage. Avant d'ouvrir les candidatures en production : disque persistant Render (plan payant, `UPLOAD_DIR` pointant vers le disque) ou stockage objet (ex. Supabase Storage).
+
 ## Base de données — migrations en production
 
 Toujours `prisma migrate deploy` (jamais `migrate dev`, qui peut générer une nouvelle migration à

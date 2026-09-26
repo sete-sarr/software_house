@@ -2,6 +2,7 @@ export default () => ({
   nodeEnv: process.env.NODE_ENV ?? 'development',
   port: parseInt(process.env.PORT ?? '3001', 10),
   apiPrefix: process.env.API_PREFIX ?? 'api/v1',
+  trustProxy: parseInt(process.env.TRUST_PROXY ?? '0', 10),
 
   database: {
     url: process.env.DATABASE_URL,
