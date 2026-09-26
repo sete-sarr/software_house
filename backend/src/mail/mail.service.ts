@@ -23,11 +23,15 @@ export class MailService {
       return;
     }
 
+    const port = this.configService.get<number>('mail.port') ?? 587;
+    // 465 = implicit TLS from the first byte; other ports (587) upgrade via STARTTLS.
+    const secure = port === 465;
+
     this.transporter = createTransport({
       host,
-      port: this.configService.get<number>('mail.port'),
-      secure: false,
-      requireTLS: true,
+      port,
+      secure,
+      requireTLS: !secure,
       auth: {
         user: this.configService.get<string>('mail.user'),
         pass: this.configService.get<string>('mail.password'),
