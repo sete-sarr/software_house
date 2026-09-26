@@ -32,6 +32,11 @@ export class MailService {
       port,
       secure,
       requireTLS: !secure,
+      // Fail fast when the SMTP server is unreachable (e.g. outbound port blocked by the host)
+      // instead of nodemailer's 2-minute default.
+      connectionTimeout: 10_000,
+      greetingTimeout: 10_000,
+      socketTimeout: 20_000,
       auth: {
         user: this.configService.get<string>('mail.user'),
         pass: this.configService.get<string>('mail.password'),

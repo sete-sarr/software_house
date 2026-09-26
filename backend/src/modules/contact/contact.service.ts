@@ -36,7 +36,9 @@ export class ContactService {
     const email = escapeHtml(dto.email);
     const message = escapeHtml(dto.message);
 
-    await Promise.all([
+    // Not awaited: the request is already saved, so the visitor must not wait on SMTP.
+    // sendMail never rejects (failures are logged by MailService).
+    void Promise.all([
       this.mailService.sendMail({
         to: adminEmail ?? 'admin@example.com',
         subject: `Nouvelle demande de contact — ${dto.firstName} ${dto.lastName}`,

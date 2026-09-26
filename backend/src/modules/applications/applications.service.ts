@@ -44,7 +44,9 @@ export class ApplicationsService {
     const lastName = escapeHtml(dto.lastName);
     const email = escapeHtml(dto.email);
 
-    await Promise.all([
+    // Not awaited: the application is already saved, so the candidate must not wait on SMTP.
+    // sendMail never rejects (failures are logged by MailService).
+    void Promise.all([
       this.mailService.sendMail({
         to: adminEmail ?? 'admin@example.com',
         subject: `Nouvelle candidature — ${dto.firstName} ${dto.lastName}`,
